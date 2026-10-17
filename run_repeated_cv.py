@@ -3,8 +3,10 @@
 Configurations (name, SVD k, IC weighting, negative sampling):
   baseline_k30   30   no   random   <- paper baseline
   svd_only_k107  107  no   random
-  ic_only        107  yes  random
-  rnss_only      107  no   rnss
+  ic_only_k30    30   yes  random
+  rnss_only_k30  30   no   rnss
+  ic_only        107  yes  random   (reference)
+  rnss_only      107  no   rnss     (reference)
   ic_svd_noRNSS  122  yes  random
   full_method    122  yes  rnss
 
@@ -17,6 +19,7 @@ from common import Data, pu_bagging_fold
 
 CONFIGS = [("baseline_k30", 30, False, "random"), ("svd_only_k107", 107, False, "random"),
            ("ic_only", 107, True, "random"), ("rnss_only", 107, False, "rnss"),
+           ("ic_only_k30", 30, True, "random"), ("rnss_only_k30", 30, False, "rnss"),
            ("ic_svd_noRNSS", 122, True, "random"), ("full_method", 122, True, "rnss")]
 SEEDS = [42, 1, 2, 3, 4]
 

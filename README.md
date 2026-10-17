@@ -13,6 +13,10 @@ Download the MGP-DDA input files from the original authors (Kawichai et al., 202
     python summarize_stats.py                                # mean±std, paired t-test, sign-flip permutation test
     python run_nested_cv.py --data-dir /path/to/data --k 122 # nested CV
 
-Configurations: baseline_k30 (k=30, no IC, random negatives), svd_only_k107, ic_only (k=107), rnss_only (k=107),
-ic_svd_noRNSS (k=122), full_method (IC + k=122 + RNSS). SVD is always fit on training data only.
-PU-bagging iterations: T=5 in these runs (`--T`). Seeds for the 5 repeats: 42,1,2,3,4. About 40 s per fold on 2 CPUs.
+Configurations (name: SVD k, IC weighting, negatives):
+baseline_k30 (30, no, random), ic_only_k30 (30, yes, random), svd_only_k107 (107, no, random),
+rnss_only_k30 (30, no, RNSS), ic_svd_noRNSS (122, yes, random), full_method (122, yes, RNSS).
+k=107 / k=122 are the smallest numbers of SVD components retaining >=95% of the variance of the unweighted / IC-weighted features.
+Two additional configurations (ic_only, rnss_only with k=107) are kept in the results file for reference.
+SVD is always fit on training data only. PU-bagging iterations: T=5 (`--T`). Seeds of the 5 repeats: 42,1,2,3,4.
+About 40-100 s per fold on 2 CPUs. Results reproduce the reported values to within about +-0.0005 across library versions.
